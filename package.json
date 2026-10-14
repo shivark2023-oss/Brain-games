@@ -1,0 +1,11 @@
+{
+  "name": "brain-games",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Daily 5-minute brain workout with streak tracking. Installable offline web app.",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\"",
+    "start": "python3 -m http.server 8080"
+  }
+}

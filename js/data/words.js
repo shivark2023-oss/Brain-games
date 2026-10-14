@@ -1,0 +1,45 @@
+// Anagram words are chosen to have no common alternative anagram,
+// so there is only one right answer.
+export const ANAGRAM_WORDS = {
+  4: ['BOOK', 'TREE', 'FISH', 'MILK', 'RAIN', 'SEED', 'BIRD', 'DOVE', 'GOLD', 'HAND',
+    'KING', 'LAMB', 'MOON', 'NAIL', 'ROAD', 'SAND', 'SWIM', 'WIND', 'WORM', 'YARD',
+    'JUMP', 'BELL', 'CAKE', 'DUCK', 'FROG', 'GIFT', 'HILL', 'JAZZ', 'KITE', 'LOCK',
+    'MASK', 'NOON', 'PARK', 'QUIZ', 'ROCK', 'SOUP', 'TENT', 'VEST', 'WAVE', 'ZERO'],
+  5: ['APPLE', 'BEACH', 'BROOM', 'CHAIR', 'CLOWN', 'DANCE', 'EAGLE', 'FLAME', 'GLOVE', 'HAPPY',
+    'HOUSE', 'JUICE', 'KNIFE', 'LUNCH', 'MOUSE', 'MUSIC', 'NOBLE', 'OLIVE', 'PIANO', 'QUEEN',
+    'RIVER', 'SMOKE', 'STORM', 'TIGER', 'TRAIN', 'WATER', 'WHALE', 'YOUTH', 'ZEBRA', 'BRAIN',
+    'CANDY', 'DRINK', 'FIELD', 'GHOST', 'HONEY', 'LIGHT', 'MONEY', 'PLANT', 'ROBOT', 'SUGAR'],
+  6: ['ANIMAL', 'BASKET', 'BRIDGE', 'BUTTER', 'CANDLE', 'CASTLE', 'CIRCLE', 'DINNER', 'DOCTOR', 'FAMILY',
+    'FLOWER', 'FROZEN', 'GUITAR', 'JUNGLE', 'KITTEN', 'LADDER', 'MARKET', 'MIRROR', 'MONKEY', 'NATURE',
+    'ORANGE', 'PENCIL', 'PEOPLE', 'PLANET', 'POCKET', 'RABBIT', 'ROCKET', 'SCHOOL', 'SUMMER', 'SPRING',
+    'TICKET', 'TOMATO', 'TURTLE', 'WINDOW', 'WINTER', 'YELLOW', 'COFFEE'],
+  7: ['BALLOON', 'BICYCLE', 'BLANKET', 'CABBAGE', 'CAPTAIN', 'CHICKEN', 'COUNTRY', 'CRYSTAL', 'DIAMOND', 'DOLPHIN',
+    'FREEDOM', 'GIRAFFE', 'HARMONY', 'JOURNEY', 'KITCHEN', 'LIBRARY', 'MACHINE', 'MORNING', 'MYSTERY', 'NETWORK',
+    'OCTOPUS', 'PICTURE', 'PYRAMID', 'RAINBOW', 'SCIENCE', 'SHELTER', 'SUNRISE', 'THUNDER', 'TRUMPET', 'UNIFORM',
+    'VILLAGE', 'VOLCANO', 'WEATHER', 'WEEKEND', 'WHISPER', 'KINGDOM', 'HOLIDAY', 'PENGUIN'],
+};
+
+// [word, synonym] pairs, easiest tier first. Within a tier no two answers are
+// close in meaning, because the other answers are used as wrong options.
+export const SYNONYM_TIERS = [
+  [['happy', 'glad'], ['big', 'large'], ['small', 'tiny'], ['fast', 'quick'], ['begin', 'start'],
+    ['end', 'finish'], ['angry', 'mad'], ['smart', 'clever'], ['easy', 'simple'], ['shut', 'close'],
+    ['rich', 'wealthy'], ['buy', 'purchase'], ['help', 'assist'], ['hard', 'difficult'], ['scared', 'afraid'],
+    ['sick', 'ill'], ['gift', 'present'], ['choose', 'pick'], ['center', 'middle'], ['quiet', 'silent'],
+    ['correct', 'right'], ['story', 'tale'], ['under', 'below'], ['often', 'frequently']],
+  [['brave', 'courageous'], ['honest', 'truthful'], ['ancient', 'old'], ['rapid', 'swift'], ['calm', 'peaceful'],
+    ['weary', 'tired'], ['enormous', 'huge'], ['fragile', 'delicate'], ['vanish', 'disappear'], ['brief', 'short'],
+    ['gather', 'collect'], ['abundant', 'plentiful'], ['accurate', 'precise'], ['conceal', 'hide'], ['eager', 'keen'],
+    ['famous', 'renowned'], ['gloomy', 'dismal'], ['humble', 'modest'], ['journey', 'trip'], ['mend', 'repair'],
+    ['polite', 'courteous'], ['reveal', 'show'], ['sturdy', 'strong'], ['timid', 'shy'], ['vacant', 'empty']],
+  [['benevolent', 'kind'], ['candid', 'frank'], ['diligent', 'hardworking'], ['ephemeral', 'fleeting'], ['frugal', 'thrifty'],
+    ['gregarious', 'sociable'], ['hostile', 'unfriendly'], ['impartial', 'fair'], ['lethargic', 'sluggish'], ['meticulous', 'thorough'],
+    ['novice', 'beginner'], ['obsolete', 'outdated'], ['affluent', 'wealthy'], ['resilient', 'tough'], ['scrutinize', 'examine'],
+    ['tedious', 'boring'], ['verbose', 'wordy'], ['wary', 'cautious'], ['zealous', 'passionate'], ['ambiguous', 'unclear'],
+    ['concise', 'brief'], ['diminish', 'reduce'], ['elated', 'thrilled'], ['futile', 'useless']],
+  [['ubiquitous', 'omnipresent'], ['laconic', 'terse'], ['obfuscate', 'confuse'], ['pernicious', 'harmful'], ['sycophant', 'flatterer'],
+    ['recalcitrant', 'unruly'], ['ebullient', 'exuberant'], ['perfunctory', 'cursory'], ['magnanimous', 'generous'], ['insipid', 'bland'],
+    ['loquacious', 'talkative'], ['intrepid', 'fearless'], ['nefarious', 'wicked'], ['quixotic', 'idealistic'], ['pragmatic', 'practical'],
+    ['esoteric', 'obscure'], ['fastidious', 'fussy'], ['capricious', 'fickle'], ['ineffable', 'indescribable'], ['lucid', 'clear'],
+    ['mendacious', 'dishonest'], ['obstinate', 'stubborn'], ['placate', 'appease'], ['voracious', 'insatiable']],
+];
