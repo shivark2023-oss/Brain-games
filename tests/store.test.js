@@ -1,13 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyState, recordGame, completedDates, parseBackup, skillTrend, bestScores } from '../js/core/store.js';
+import { emptyState, levelOf, raiseToStartLevel, recordGame, completedDates, parseBackup, skillTrend, bestScores } from '../js/core/store.js';
 
 const result = (gameId, skill, level, accuracy, score = 10) => ({ gameId, skill, level, accuracy, score });
 
 test('recording all workout games marks the day complete and adjusts level', () => {
   let s = emptyState();
   const workout = ['grid-recall', 'color-clash', 'quick-math'];
-  s = recordGame(s, '2026-10-14', workout, result('grid-recall', 'memory', 1, 0.9));
+  s = recordGame(s, '2026-10-14', workout, result('grid-recall', 'memory', 1, 0.85));
   assert.deepEqual(completedDates(s), []);
   assert.equal(s.levels['grid-recall'], 2);
   s = recordGame(s, '2026-10-14', workout, result('color-clash', 'speed', 1, 0.6));
@@ -19,8 +19,8 @@ test('recording all workout games marks the day complete and adjusts level', () 
 test('replaying a game on the same day does not double count', () => {
   let s = emptyState();
   const workout = ['grid-recall', 'color-clash', 'quick-math'];
-  s = recordGame(s, '2026-10-14', workout, result('grid-recall', 'memory', 1, 0.9));
-  s = recordGame(s, '2026-10-14', workout, result('grid-recall', 'memory', 2, 0.9));
+  s = recordGame(s, '2026-10-14', workout, result('grid-recall', 'memory', 1, 0.85));
+  s = recordGame(s, '2026-10-14', workout, result('grid-recall', 'memory', 2, 0.85));
   assert.equal(s.days['2026-10-14'].games.length, 1);
   assert.equal(s.levels['grid-recall'], 2);
 });
@@ -49,4 +49,18 @@ test('bestScores keeps the top raw score per game', () => {
   s = recordGame(s, '2026-10-15', ['a', 'b', 'c'], result('a', 'memory', 1, 0.5, 30));
   s = recordGame(s, '2026-10-16', ['a', 'b', 'c'], result('a', 'memory', 1, 0.5, 20));
   assert.equal(bestScores(s).a, 30);
+});
+
+test('an unplayed game starts at the start level', () => {
+  assert.equal(levelOf(emptyState(), 'grid-recall'), 3);
+});
+
+test('raiseToStartLevel lifts old beginner levels once and keeps higher ones', () => {
+  const s = { ...emptyState(), levels: { a: 1, b: 2, c: 6 } };
+  const r = raiseToStartLevel(s);
+  assert.deepEqual(r.levels, { a: 3, b: 3, c: 6 });
+  assert.equal(r.startLevelApplied, true);
+  // Once applied, a later ease-off below 3 is respected.
+  const later = { ...r, levels: { ...r.levels, a: 2 } };
+  assert.equal(raiseToStartLevel(later).levels.a, 2);
 });

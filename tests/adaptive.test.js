@@ -1,6 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { nextLevel, skillPoints, MIN_LEVEL, MAX_LEVEL } from '../js/core/adaptive.js';
+import { nextLevel, skillPoints, MIN_LEVEL, MAX_LEVEL, START_LEVEL } from '../js/core/adaptive.js';
+
+test('new games start above beginner level', () => {
+  assert.equal(START_LEVEL, 3);
+});
+
+test('jumps two levels on an excellent score', () => {
+  assert.equal(nextLevel(3, 0.9), 5);
+  assert.equal(nextLevel(3, 1), 5);
+  assert.equal(nextLevel(MAX_LEVEL - 1, 0.95), MAX_LEVEL);
+});
 
 test('levels up on high accuracy, down on low, holds otherwise', () => {
   assert.equal(nextLevel(3, 0.85), 4);

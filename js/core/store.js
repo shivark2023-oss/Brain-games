@@ -1,4 +1,4 @@
-import { nextLevel, skillPoints, MIN_LEVEL } from './adaptive.js';
+import { nextLevel, skillPoints, START_LEVEL } from './adaptive.js';
 
 const VERSION = 1;
 
@@ -12,7 +12,16 @@ export function emptyState() {
 }
 
 export function levelOf(state, gameId) {
-  return state.levels[gameId] ?? MIN_LEVEL;
+  return state.levels[gameId] ?? START_LEVEL;
+}
+
+// One-time upgrade for progress saved before games started at START_LEVEL.
+export function raiseToStartLevel(state) {
+  if (state.startLevelApplied) return state;
+  const levels = Object.fromEntries(
+    Object.entries(state.levels).map(([id, l]) => [id, Math.max(l, START_LEVEL)]),
+  );
+  return { ...state, levels, startLevelApplied: true };
 }
 
 export function recordGame(state, date, workout, result) {
@@ -73,7 +82,7 @@ const KEY = 'brain-games-state';
 export function load() {
   try {
     const raw = localStorage.getItem(KEY);
-    return raw ? parseBackup(raw) : emptyState();
+    return raiseToStartLevel(raw ? parseBackup(raw) : emptyState());
   } catch {
     return emptyState();
   }

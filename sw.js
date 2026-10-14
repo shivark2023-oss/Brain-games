@@ -1,6 +1,6 @@
 // Offline support: precache the app shell, then serve from cache while
 // refreshing it in the background (stale-while-revalidate).
-const CACHE = 'brain-games-v1';
+const CACHE = 'brain-games-v2';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest', 'css/styles.css',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png',
