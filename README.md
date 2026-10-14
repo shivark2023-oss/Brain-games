@@ -52,5 +52,7 @@ Bump `CACHE` in `sw.js` when you release changes, so phones pick them up.
 
 ## Deploy (GitHub Pages)
 
-`.github/workflows/pages.yml` runs the tests on every push. On `main` it also deploys to GitHub Pages.
-One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+The site is served straight from the `main` branch; there's no build step.
+One-time setup: **Settings → Pages → Build and deployment → Source: Deploy from a branch → `main` / `(root)`**.
+`.nojekyll` makes Pages serve the files as they are.
+`.github/workflows/test.yml` runs the tests on every push.
